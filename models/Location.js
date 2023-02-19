@@ -6,7 +6,10 @@ const indexDB = require('./index');
 // create Location Schema
 const Location = sequelize.define('location', {
 
-    loc: {
+    lat: {
+        type: Sequelize.DataTypes.DECIMAL
+    },
+    lng: {
         type: Sequelize.DataTypes.DECIMAL
     }
 },

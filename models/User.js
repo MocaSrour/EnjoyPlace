@@ -1,9 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
 const bcrypt = require('bcrypt');
-const { check, validationResult } = require('express-validator');
-const { } = require('lodash');
-const { where } = require('sequelize');
 
 const User = sequelize.define('user', {
 
@@ -24,6 +21,9 @@ const User = sequelize.define('user', {
             const salt = bcrypt.genSaltSync();
             this.setDataValue('password',  bcrypt.hashSync(value, salt));
         },
+    },
+    role: {
+        type: Sequelize.DataTypes.TEXT,
     }
 },
 {

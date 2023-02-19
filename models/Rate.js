@@ -1,6 +1,5 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../config/database");
-const { calculateRate } = require("../server/middlewares/calculateRate");
 
 const Rate = sequelize.define(
   "rate",
