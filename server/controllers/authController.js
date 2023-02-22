@@ -9,6 +9,7 @@ module.exports.signup = async (req, res, next) => {
     const user = await User.create({ userName, email, password });
     const token = generateToken(user);
     res.cookie("jwt", token, { httpOnly: true, maxAge: 1000 * maxAge });
+    delete user.dataValues.password;
     res.status(201).json(user);
   } catch (err) {
     err.code = 401;
@@ -28,15 +29,16 @@ module.exports.login = async (req, res, next) => {
 
     const user = await User.login(email, password);
 
-    const token = generateToken(user.id, user.userName);
-
+    const token = generateToken(user);
+console.log(token)
     res.cookie("jwt", token, {
       httpOnly: true,
       maxAge: 1000 * maxAge,
       Path: "/",
     });
-    delete user.dataValues.password;
-   console.log(user)
+    user.dataValues && delete user.dataValues.password;
+    console.log('user from controller: ', user)
+    console.log('BEFORE STATUS')
     res.status(200).json(user);
   } catch (error) {
     error.message = "Login failed";

@@ -57,4 +57,25 @@ const findAllRates = async (id) => {
   }
 };
 
-module.exports = { getbyPlace, addRate, findAllRates };
+const editRate = async (req, res, next) => {
+  try {
+    try {
+      const { userId, placeId, rate, comment } = req.body;
+
+      const newRate = await Rate.update({ rate, comment }, { where: {
+        userId: userId, placeId: placeId
+      }});
+      await calculateRate(placeId);
+      res.status(201).json({ newRate });
+    } catch (errorForAdd) {
+      if (errorForAdd instanceof RateError) {
+        throw errorForAdd;
+      }
+      throw new RateError("Error while editing rate", 400);
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports = { getbyPlace, addRate, findAllRates, editRate };
