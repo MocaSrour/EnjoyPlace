@@ -30,15 +30,14 @@ module.exports.login = async (req, res, next) => {
     const user = await User.login(email, password);
 
     const token = generateToken(user);
-console.log(token)
+
     res.cookie("jwt", token, {
       httpOnly: true,
       maxAge: 1000 * maxAge,
       Path: "/",
     });
     user.dataValues && delete user.dataValues.password;
-    console.log('user from controller: ', user)
-    console.log('BEFORE STATUS')
+ 
     res.status(200).json(user);
   } catch (error) {
     error.message = "Login failed";
