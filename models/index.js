@@ -7,7 +7,6 @@ const Location = require("./Location");
 const PlaceProperties = require("./PlaceProperties");
 const rateController = require("../server/controllers/rateController");
 const { RateError } = require("../Errors");
-
 User.belongsToMany(Place, { through: Rate });
 Place.belongsToMany(User, { through: Rate });
 Rate.belongsTo(User);

@@ -1,7 +1,5 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
-const Place = require('./Place');
-const indexDB = require('./index');
 
 // create PlaceProperties Schema
 const PlaceProperties = sequelize.define('placeProperties', {

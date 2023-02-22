@@ -82,8 +82,9 @@ const updateRate = async (placeId, newRate) => {
   }
 };
 
-const deletePlace = async (req, res) => {
-
+const deletePlace = async (req, res, next) => {
+try {
+  
   const place = await Place.findByPk(req.params.placeId, { include:  User });
 
   if (place) {
@@ -94,8 +95,13 @@ const deletePlace = async (req, res) => {
     await place.destroy();
     res.status(201).json({ status: "success", message: "Deleted" });
   } else {
-    res.status(404).send("Place not found");
+    next({ code: 404, message: 'Place not found'})
   }
+} catch (error) {
+  error.message = "Error deleting place";
+  error.code = 401;
+  next(error);
+}
 };
 
 module.exports = { getAll, addPlace, getPlaceByTitle, updateRate, deletePlace };

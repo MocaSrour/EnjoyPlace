@@ -1,5 +1,5 @@
 const { getAll } = require('./placeController');
-const Place = require('../../models/Place');
+const { Place } = require('../../models');
 const PlaceProperties = require('../../models/PlaceProperties');
 
 describe('getAll', () => {

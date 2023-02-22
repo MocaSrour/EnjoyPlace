@@ -31,7 +31,7 @@ const checkEmailnPass = () => {
         reversedErrors.forEach((err) => {
           inputErrors[err.param] = err.msg;
         });
-        return res.status(401).send({ errors: inputErrors });
+        return res.status(400).send({ errors: inputErrors });
       }
       next();
     }

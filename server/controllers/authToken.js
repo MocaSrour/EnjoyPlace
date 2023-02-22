@@ -20,7 +20,6 @@ function verifyToken(token) {
   try {
     
     const decoded = jwt.verify(token, secret);
-    console.log('decoded >>> ', decoded);
     return decoded;
   } catch (err) {
     return null;
