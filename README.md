@@ -35,3 +35,4 @@ run the code with `npm start` command.
 ### use email: admin@places.enjoy
 ###     password: mypassword
 ### To log in as an Admin
+**I will appretiate it if you turn on the dark mode in your browser.**
