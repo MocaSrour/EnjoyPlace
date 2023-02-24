@@ -1,38 +1,18 @@
 # placeEnjoy
-### Preparation
 
-1. You need Postgres downloaded.
+## Prerequisites
+
+1. Install [PostgreSQL](https://www.postgresql.org/download/).
 2. Create Database with name `myTest` and password `admin`.
-3. You need VS code downloaded.
-4. Make sure Port 3117 and port 3000 are not in use
+3. Make sure Port 3117 is not in use.
 
-# Getting Started with Download both placeEnjoy/react-places-enjoy files
-
-## placeEnjoy is the backend => open it with visual studio code
-
-In the project directory, create .env with:
-
-### MY_SECRET="secret"
-
-# Initiate the code with `npm init` command in the terminal
-
-### Uncomment lines from 21 to 37 in models/index.js file
-
-run the code with `nodemon app` command.
-
-**Note: please Don't forget to comment those lines again after it runs successfully.**
-
-### react-places-enjoy is the frontend => open it with visual studio code
-
-In the project directory, create .env with:
-
-### NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="AIzaSyD-UkANPMS6GdVFjJwDi6P1D0gTLrxnFVg"
-
-# Initiate the code with `npm init` command in the terminal
-
-run the code with `npm start` command.
-
-### use email: admin@places.enjoy
-###     password: mypassword
-### To log in as an Admin
-**I will appretiate it if you turn on the dark mode in your browser.**
+## Installation and first time setup
+1. Clone or download the repo
+2. Inside the project directory, create a `.env` file and put the following code inside
+```
+MY_SECRET="secret"
+```
+3. Open a shell window inside the project directory and type in `npm init`
+4. To initialize the database, uncomment lines 21 through 37 in the `models/index.js`
+5. Run the code for a first time with `nodemon app`
+6. Recomment lines 21 through 37 then save.
