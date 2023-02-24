@@ -15,4 +15,8 @@ MY_SECRET="secret"
 3. Open a shell window inside the project directory and type in `npm init`
 4. To initialize the database, uncomment lines 21 through 37 in the `models/index.js`
 5. Run the code for a first time with `nodemon app`
+<<<<<<< HEAD
 6. Recomment lines 21 through 37 then save.
+=======
+6. Recomment lines 21 through 37 then save.
+>>>>>>> 0cba2d96bbfdd3d208ae51c602ade0cfd681a2eb
