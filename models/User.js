@@ -1,48 +1,50 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../config/database');
-const bcrypt = require('bcrypt');
+const Sequelize = require("sequelize");
+const sequelize = require("../config/database");
+const bcrypt = require("bcrypt");
 
-const User = sequelize.define('user', {
-
+const User = sequelize.define(
+  "user",
+  {
     email: {
-        type: Sequelize.DataTypes.STRING,
-        allowNull: false,
-        required: true,
+      type: Sequelize.DataTypes.STRING,
+      allowNull: false,
+      required: true,
     },
     userName: {
-        type: Sequelize.DataTypes.STRING,
-        allowNull: false,
-        required: true
+      type: Sequelize.DataTypes.STRING,
+      allowNull: false,
+      required: true,
     },
     password: {
-        type: Sequelize.DataTypes.TEXT,
-        required: true,
-        set(value) {
-            const salt = bcrypt.genSaltSync();
-            this.setDataValue('password',  bcrypt.hashSync(value, salt));
-        },
+      type: Sequelize.DataTypes.TEXT,
+      required: true,
+      set(value) {
+        const salt = bcrypt.genSaltSync();
+        this.setDataValue("password", bcrypt.hashSync(value, salt));
+      },
     },
     role: {
-        type: Sequelize.DataTypes.TEXT,
-    }
-},
-{
-    timestamps: false
-});
+      type: Sequelize.DataTypes.TEXT,
+    },
+  },
+  {
+    timestamps: false,
+  }
+);
 
 User.getUserById = async (email) => {
-    return await User.findOne( { where: { email: email } });
-}
+  return await User.findOne({ where: { email: email } });
+};
 
 User.login = async (email, password) => {
-    const user = await User.findOne( { where: { email: email } });
-    
-    if (user) {
-        const auth = await bcrypt.compare(password, user.password);
-        if (auth) {
-            return user;
-        }
-        throw Error(code,'incorrect Password');
+  const user = await User.findOne({ where: { email: email } });
+
+  if (user) {
+    const auth = await bcrypt.compare(password, user.password);
+    if (auth) {
+      return user;
     }
-}
+    throw Error(code, "incorrect Password");
+  }
+};
 module.exports = User;

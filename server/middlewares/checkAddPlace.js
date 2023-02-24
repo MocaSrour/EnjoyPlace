@@ -28,7 +28,7 @@ const checkAddPlace = () => {
       .isEmpty()
       .withMessage("Phone is required")
       .isInt()
-      .withMessage('Phone should be numbers only')
+      .withMessage("Phone should be numbers only")
       .isLength({ min: 7, max: 18 })
       .withMessage("Phone should be at least 7 Numbers & maximum 18"),
     body("parking").isBoolean().withMessage("Parking should be a boolean"),

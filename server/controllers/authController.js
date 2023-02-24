@@ -6,7 +6,7 @@ const maxAge = 3 * 24 * 60 * 60;
 module.exports.signup = async (req, res, next) => {
   try {
     const { userName, email, password } = req.body;
-    const user = await User.create({ userName, email, password, role: 'User' });
+    const user = await User.create({ userName, email, password, role: "User" });
     const token = generateToken(user);
     res.cookie("jwt", token, { httpOnly: true, maxAge: 1000 * maxAge });
     delete user.dataValues.password;

@@ -35,7 +35,7 @@ describe("login", () => {
     generateToken.mockReturnValue("mock-token");
 
     await login(req, res, next);
-   
+
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(mockUser);
   });

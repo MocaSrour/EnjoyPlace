@@ -34,14 +34,13 @@ const checkEmailnPass = () => {
         return res.status(400).send({ errors: inputErrors });
       }
       next();
-    }
-  ]
+    },
+  ];
 };
 
 module.exports = { checkEmailnPass };
 
-
-// //// 
+// ////
 // const logineEmailValidator = [
 //   header(["authorization", "name"])
 //     .not()

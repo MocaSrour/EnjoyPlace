@@ -2,18 +2,18 @@ const express = require("express");
 const authRoutes = require("../server/routes/authRoutes");
 const placeRoutes = require("../server/routes/placeRoutes");
 const rateRoutes = require("../server/routes/rateRoutes");
-const locationRoutes = require('../server/routes/locationRoutes');
+const locationRoutes = require("../server/routes/locationRoutes");
 const errorHandler = require("./middlewares/errorHandler");
 const cookieParser = require("cookie-parser");
-const cors = require('cors');
+const cors = require("cors");
 
 const startServer = () => {
   const app = express();
 
   app.use(
     cors({
-      origin: 'http://localhost:3000',
-      credentials: true
+      origin: "http://localhost:3000",
+      credentials: true,
     })
   );
   app.use(cookieParser());

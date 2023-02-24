@@ -5,11 +5,13 @@ const User = require("../../models/User");
 
 // GEt rates by placeID
 const getbyPlace = async (req, res) => {
-  const rates = await Rate.findAll({ include: {
-    model: User,
-    attributes: ['userName']
-  },
-  where: { placeId: req.params.placeId } });
+  const rates = await Rate.findAll({
+    include: {
+      model: User,
+      attributes: ["userName"],
+    },
+    where: { placeId: req.params.placeId },
+  });
   return res.json({ rates });
 };
 
@@ -62,9 +64,15 @@ const editRate = async (req, res, next) => {
     try {
       const { userId, placeId, rate, comment } = req.body;
 
-      const newRate = await Rate.update({ rate, comment }, { where: {
-        userId: userId, placeId: placeId
-      }});
+      const newRate = await Rate.update(
+        { rate, comment },
+        {
+          where: {
+            userId: userId,
+            placeId: placeId,
+          },
+        }
+      );
       await calculateRate(placeId);
       res.status(201).json({ newRate });
     } catch (errorForAdd) {
@@ -76,6 +84,6 @@ const editRate = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}
+};
 
 module.exports = { getbyPlace, addRate, findAllRates, editRate };

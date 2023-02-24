@@ -1,13 +1,13 @@
-const { getAll } = require('./placeController');
-const { Place } = require('../../models');
-const PlaceProperties = require('../../models/PlaceProperties');
+const { getAll } = require("./placeController");
+const { Place } = require("../../models");
+const PlaceProperties = require("../../models/PlaceProperties");
 
-describe('getAll', () => {
-  it('returns all places', async () => {
+describe("getAll", () => {
+  it("returns all places", async () => {
     // Mock the Place.findAll method to return some sample data
     Place.findAll = jest.fn().mockResolvedValue([
-      { id: 1, name: 'Place 1', PlaceProperties: { id: 1, property: 'value' } },
-      { id: 2, name: 'Place 2', PlaceProperties: { id: 2, property: 'value' } },
+      { id: 1, name: "Place 1", PlaceProperties: { id: 1, property: "value" } },
+      { id: 2, name: "Place 2", PlaceProperties: { id: 2, property: "value" } },
     ]);
 
     const req = {};
@@ -23,16 +23,24 @@ describe('getAll', () => {
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.json).toHaveBeenCalledWith({
       places: [
-        { id: 1, name: 'Place 1', PlaceProperties: { id: 1, property: 'value' } },
-        { id: 2, name: 'Place 2', PlaceProperties: { id: 2, property: 'value' } },
+        {
+          id: 1,
+          name: "Place 1",
+          PlaceProperties: { id: 1, property: "value" },
+        },
+        {
+          id: 2,
+          name: "Place 2",
+          PlaceProperties: { id: 2, property: "value" },
+        },
       ],
     });
     expect(next).not.toHaveBeenCalled();
   });
 
-  it('handles errors', async () => {
+  it("handles errors", async () => {
     // Mock the Place.findAll method to throw an error
-    Place.findAll = jest.fn().mockRejectedValue(new Error('Database error'));
+    Place.findAll = jest.fn().mockRejectedValue(new Error("Database error"));
 
     const req = {};
     const res = {

@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const PlaceProperties = require("./PlaceProperties");
 const sequelize = require("../config/database");
-const Location = require('./Location');
+const Location = require("./Location");
 
 const Place = sequelize.define(
   "place",
@@ -19,11 +19,11 @@ const Place = sequelize.define(
     },
     rate: {
       type: Sequelize.DataTypes.DOUBLE,
-      defaultValue: 0
+      defaultValue: 0,
     },
     img: {
       type: Sequelize.DataTypes.TEXT,
-    }
+    },
   },
   {
     timestamps: false,
