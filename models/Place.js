@@ -15,7 +15,7 @@ const Place = sequelize.define(
       type: Sequelize.DataTypes.STRING,
     },
     phone: {
-      type: Sequelize.DataTypes.INTEGER,
+      type: Sequelize.DataTypes.BIGINT,
     },
     rate: {
       type: Sequelize.DataTypes.DOUBLE,

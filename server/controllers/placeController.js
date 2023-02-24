@@ -23,48 +23,58 @@ const getAll = async (req, res, next) => {
   }
 };
 // { "title": "Cafe 2", "email": "cafe@cafe.com", "phone": "0132546865", "parking": false, "ramp": true, "elevator": false, "toilet": true, "floor": 2 }
-const addPlace = async (req, res) => {
-  const {
-    title,
-    email,
-    phone,
-    parking,
-    ramp,
-    elevator,
-    toilet,
-    floor,
-    img,
-    lat,
-    lng,
-  } = req.body;
+const addPlace = async (req, res, next) => {
+  try {
+    const {
+      title,
+      email,
+      phone,
+      parking,
+      ramp,
+      elevator,
+      toilet,
+      floor,
+      img,
+      lat,
+      lng,
+    } = req.body;
 
-  const place = await Place.create({
-    title: title.toLowerCase(),
-    email,
-    phone,
-    img,
-  });
-  const placeProperties = await PlaceProperties.create({
-    placeId: place.id,
-    parking,
-    ramp,
-    elevator,
-    toilet,
-    floor,
-  });
+    const place = await Place.create({
+      title: title.toLowerCase(),
+      email,
+      phone,
+      img,
+    });
+    const placeProperties = await PlaceProperties.create({
+      placeId: place.id,
+      parking,
+      ramp,
+      elevator,
+      toilet,
+      floor,
+    });
 
-  addLocation(place.id, lat, lng);
+    addLocation(place.id, lat, lng);
 
-  res.status(201).json({ place, placeProperties });
+    res.status(201).json({ place, placeProperties });
+  } catch (error) {
+    error.message = "Failed to Add place";
+    error.code = 401;
+    next(error);
+  }
 };
 
 const getPlaceByTitle = async (title) => {
-  const place = await Place.findOne({ where: { title: title } });
+  try {
+    const place = await Place.findOne({ where: { title: title } });
 
-  if (place) {
-    return true;
+    if (place) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    throw Error;
   }
-  return false;
 };
 
 const updateRate = async (placeId, newRate) => {
@@ -83,25 +93,24 @@ const updateRate = async (placeId, newRate) => {
 };
 
 const deletePlace = async (req, res, next) => {
-try {
-  
-  const place = await Place.findByPk(req.params.placeId, { include:  User });
+  try {
+    const place = await Place.findByPk(req.params.placeId, { include: User });
 
-  if (place) {
-    const users = await place.getUsers();
-    if (users.length > 0) {
-      await place.setUsers([]);
+    if (place) {
+      const users = await place.getUsers();
+      if (users.length > 0) {
+        await place.setUsers([]);
+      }
+      await place.destroy();
+      res.status(201).json({ status: "success", message: "Deleted" });
+    } else {
+      next({ code: 404, message: "Place not found" });
     }
-    await place.destroy();
-    res.status(201).json({ status: "success", message: "Deleted" });
-  } else {
-    next({ code: 404, message: 'Place not found'})
+  } catch (error) {
+    error.message = "Error deleting place";
+    error.code = 401;
+    next(error);
   }
-} catch (error) {
-  error.message = "Error deleting place";
-  error.code = 401;
-  next(error);
-}
 };
 
 module.exports = { getAll, addPlace, getPlaceByTitle, updateRate, deletePlace };

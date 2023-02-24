@@ -13,13 +13,28 @@ Rate.belongsTo(User);
 Rate.belongsTo(Place);
 
 Location.belongsTo(Place);
-Place.hasOne(Location, { onDelete: 'CASCADE' });
+Place.hasOne(Location, { onDelete: "CASCADE" });
 PlaceProperties.belongsTo(Place);
-Place.hasOne(PlaceProperties, { onDelete: 'CASCADE' });
+Place.hasOne(PlaceProperties, { onDelete: "CASCADE" });
 
-// sequelize.sync({ alter: true })
-// .then(() => console.log('Tables built Successfully'))
-//     .catch(err => console.log(err));
+// Create a super Admin account
+// const creatAdmin = async () =>
+//   await User.create({
+//     userName: Admin,
+//     email: "admin@places.enjoy",
+//     password: "mypassword",
+//     role: "Admin",
+//   });
+// sequelize
+//   .sync({ alter: true })
+//   .then(() => {
+//     console.log("Tables built Successfully");
+//     creatAdmin();
+//     console.log(
+//       "Your user is registered now, you can use the website with this user account, email: admin@places.enjoy password: mypassword , Dont forget to comment lines from 21 to 37 in models/index.js file, please."
+//     );
+//   })
+//   .catch((err) => console.log(err));
 
 // Get PLACE BY ID
 Place.getPlaceById = async (req, res, next) => {

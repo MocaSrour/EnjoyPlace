@@ -6,7 +6,7 @@ const maxAge = 3 * 24 * 60 * 60;
 module.exports.signup = async (req, res, next) => {
   try {
     const { userName, email, password } = req.body;
-    const user = await User.create({ userName, email, password });
+    const user = await User.create({ userName, email, password, role: 'User' });
     const token = generateToken(user);
     res.cookie("jwt", token, { httpOnly: true, maxAge: 1000 * maxAge });
     delete user.dataValues.password;
@@ -37,7 +37,7 @@ module.exports.login = async (req, res, next) => {
       Path: "/",
     });
     user.dataValues && delete user.dataValues.password;
- 
+
     res.status(200).json(user);
   } catch (error) {
     error.message = "Login failed";
@@ -45,7 +45,13 @@ module.exports.login = async (req, res, next) => {
     next(error);
   }
 };
-module.exports.logout = async (req, res) => {
-  res.cookie("jwt", "", { maxAge: 1 });
-  res.status(200).send("Logout successful");
+module.exports.logout = async (req, res, next) => {
+  try {
+    res.cookie("jwt", "", { maxAge: 1 });
+    res.status(200).send("Logged out successfully");
+  } catch (error) {
+    error.message = "Failed to log out";
+    error.code = 401;
+    next(error);
+  }
 };

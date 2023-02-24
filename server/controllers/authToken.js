@@ -1,25 +1,26 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-const secret = 'secret';
 //          days * hours * min * sec
 const maxAge = 3 * 24 * 60 * 60;
 
 function generateToken(user) {
-  const payload = {
-    id: user.id,
-    userName: user.userName
-  };
-  const options = {
-    expiresIn: maxAge
-  };
  
-  return jwt.sign(payload, secret, options);
+    const payload = {
+      id: user.id,
+      userName: user.userName
+    };
+    const options = {
+      expiresIn: maxAge
+    };
+    
+    return jwt.sign(payload, process.env.MY_SECRET, options);
+    
 }
 
 function verifyToken(token) {
   try {
-    
-    const decoded = jwt.verify(token, secret);
+    const decoded = jwt.verify(token, process.env.MY_SECRET);
     return decoded;
   } catch (err) {
     return null;
