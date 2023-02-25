@@ -4,11 +4,11 @@ const authAdmin = (req, res, next) => {
     if (req.user.role === "Admin") {
       next();
     } else {
-      res.status(403).send("User is not an admin");
+      res.status(403).send({ errors: { user: "User is not an admin"}});
     }
   } catch (error) {
     console.error(error);
-    res.status(403).send("Error handling authorizations");
+    res.status(403).send({ errors: { user:"Error handling authorizations"}});
   }
 };
 
