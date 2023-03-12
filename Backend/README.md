@@ -3,7 +3,7 @@
 ## Prerequisites
 
 1. Install [PostgreSQL](https://www.postgresql.org/download/).
-2. Create Database with name `myTest` and password `admin`.
+2. Create Database with name `placeDB` and password `admin`.
 3. Make sure Port 3117 is not in use.
 
 ## Installation and first time setup
