@@ -1,0 +1,4 @@
+.reviewBoxes {
+    display: flex;
+    flex-direction: column
+}

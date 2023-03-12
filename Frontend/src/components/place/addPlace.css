@@ -1,0 +1,27 @@
+#formAddPlace {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
+    gap: 10px;
+}
+
+#formAddPlace > * {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
+}
+.info {
+    flex-basis: 20px;
+    gap: 10px;
+}
+
+.props {
+    flex-direction: column;
+}
+
+.pimg {
+    flex-basis: 20px;
+    gap: 10px;
+}

@@ -1,0 +1,39 @@
+.pageContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.pageContent > * {
+  margin: 5px;
+}
+
+.placeImg {
+  box-shadow: 0px 2px 20px #444;
+  border-radius: 50px;
+  height: 424px;
+  width: 1003px;
+  margin-block: 30px;
+  object-fit: cover;
+}
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.placeContact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.propsNmap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.propsNmap > * {
+  min-width: 300px;
+}

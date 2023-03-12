@@ -1,0 +1,22 @@
+:root {
+    --primary-color: #f39883;
+    --secondary-color: #fcd5a4;
+    --background-color: #E35335;
+    --background-light-color: #ffb7c5;
+}
+
+#root {
+    display: grid;
+    grid-template-columns: 1fr 4fr 0.1fr;
+    grid-template-areas: 
+    "sidebar content .";
+}
+
+.sidebar {
+    grid-area: sidebar;
+    min-width: 220px;
+}
+
+.content {
+    grid-area: content;
+}
