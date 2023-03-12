@@ -1,4 +1,4 @@
-# placeEnjoy
+# EnjoyPlace
 
 ## Prerequisites
 
@@ -7,8 +7,8 @@
 3. Make sure Port 3117 is not in use.
 
 ## Installation and first time setup
-1. Clone or download the repo
-2. Inside the project directory, create a `.env` file and put the following code inside
+1. Clone or download the repo.
+2. Inside the project directory, create a `.env` file and put the following code inside.
 ```
 MY_SECRET="secret"
 ```
